@@ -14,3 +14,14 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::group(['prefix' => 'admin'], function() {
+    Route::get('karte/create', 'Admin\KarteController@add')->middleware('auth');
+});
+
+Route::group(['prefix' => 'admin'], function() {
+    Route::get('karte/create', 'Admin\KarteController@edit')->middleware('auth');
+});
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
