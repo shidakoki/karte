@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Patient;
+use App\History;
+use Carbon\Carbon;
 
 class PatientController extends Controller
 {
@@ -45,4 +47,45 @@ class PatientController extends Controller
       }
       return view('admin.patient.index', ['posts' => $posts, 'cond_title' => $cond_title]);
   }
+  
+  public function edit(Request $request)
+  {
+      // patient Modelからデータを取得する
+      $patient = Patient::find($request->id);
+      if (empty($patient)) {
+        abort(404);    
+      }
+      return view('admin.patient.edit', ['patiet_form' => $patient]);
+  }
+
+
+  public function update(Request $request)
+  {
+      // Validationをかける
+      $this->validate($request, Patient::$rules);
+      // Patient Modelからデータを取得する
+      $patient = Patient::find($request->id);
+      // 送信されてきたフォームデータを格納する
+      $patient_form = $request->all();
+      unset($patient_form['_token']);
+
+      // 該当するデータを上書きして保存する
+      $patinet->fill($patient_form)->save();
+      
+      $history = new History();
+        $history->patient_id = $patient->id;
+        $history->edited_at = Carbon::now();
+        $history->save();
+
+      return redirect('admin/patient');
+  }
+  
+  public function delete(Request $request)
+  {
+      // 該当するPatient Modelを取得
+      $patient = Patient::find($request->id);
+      // 削除する
+      $patient->delete();
+      return redirect('admin/patient/');
+  }  
 }

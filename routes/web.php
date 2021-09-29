@@ -19,6 +19,10 @@ Route::group(['prefix' => 'admin'], function() {
     Route::get('patient/create', 'Admin\PatientController@add');
     Route::post('patient/create', 'Admin\PatientController@create');
     Route::get('patient', 'Admin\PatientController@index')->middleware('auth'); 
+    Route::get('patient/edit', 'Admin\PatientController@edit')->middleware('auth'); // 追記
+    Route::post('patient/edit', 'Admin\PatientController@update')->middleware('auth'); // 追記
+    Route::get('patient/delete', 'Admin\PatientController@delete')->middleware('auth');
+    
     Route::get('karte/create', 'Admin\KarteController@add')->middleware('auth');
     Route::get('karte/create', 'Admin\KarteController@edit')->middleware('auth');
 

@@ -52,6 +52,12 @@
                                     <td>{{ \Str::limit($patient->height, 100) }}</td>
                                     <td>{{ \Str::limit($patient->weight, 100) }}</td>
                                     <td>{{ \Str::limit($patient->keyperson, 100) }}</td>
+                                     <div>
+                                        <a href="{{ action('Admin\PatientController@edit', ['id' => $patient->id]) }}">編集</a>
+                                    </div>
+                                    <div>
+                                        <a href="{{ action('Admin\PatientController@delete', ['id' => $patien->id]) }}">削除</a>
+                                    </div>
                                 </tr>
                             @endforeach
                         </tbody>

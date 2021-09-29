@@ -18,4 +18,9 @@ class Patient extends Model
         'weight' => 'required',
         'keyperson' => 'required',
     );
+    public function histories()
+    {
+        return $this->hasMany('App\History');
+
+    }
 }
