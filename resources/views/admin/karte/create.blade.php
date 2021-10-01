@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <!--<html>-->
 <!--    <head>-->
 <!--        <meta charset="utf-8">-->
@@ -34,15 +33,15 @@
                         </ul>
                     @endif
                     <div class="form-group row">
-                        <label class="col-md-2">タイトル</label>
+                        <label class="col-md-2">職種</label>
                         <div class="col-md-10">
-                            <input type="text" class="form-control" name="title" value="{{ old('title') }}">
+                            <input type="text" class="form-control" name="occupation" value="{{ old('occupation') }}">
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label class="col-md-2">本文</label>
+                        <label class="col-md-2">記録</label>
                         <div class="col-md-10">
-                            <textarea class="form-control" name="body" rows="20">{{ old('body') }}</textarea>
+                            <textarea class="form-control" name="record" rows="20">{{ old('record') }}</textarea>
                 　　      </div>
                 　　</div>
                 {{ csrf_field() }}

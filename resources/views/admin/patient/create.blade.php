@@ -1,11 +1,13 @@
 @extends('layouts.admin')
 @section('title', '患者作成')
 
+
+
 @section('content')
     <div class="container">
         <div class="row">
             <div class="col-md-8 mx-auto">
-                <h2>患者作成</h2>
+                 <h2>患者作成</h2>
                 <form action="{{ action('Admin\PatientController@create') }}" method="post" enctype="multipart/form-data">
 
                     @if (count($errors) > 0)
@@ -43,12 +45,12 @@
                     </div>
                     <div class="form-group row">
                         <label class="col-md-2">血液型</label>
-                        <select class="form-select" aria-label="Default select example">
+                        <select class="form-select" name="bloodtype" aria-label="Default select example">
                          <option selected>血液型</option>
                          <option value="1">A</option>
                          <option value="2">B</option>
                          <option value="3">O</option>
-                         <option value="3">AB</option>
+                         <option value="4">AB</option>
                         </select>
                     </div>
                     <div class="form-group row">
@@ -66,7 +68,7 @@
                     <div class="form-group row">
                         <label class="col-md-2">キーパーソン</label>
                         <div class="col-md-10">
-                            <textarea class="form-control" name="keyperson" rows="20">{{ old('keyperson') }}</textarea>
+                            <textarea class="form-control" name="keyperson" rows="5">{{ old('keyperson') }}</textarea>
                         </div>
                     </div>
                     

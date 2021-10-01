@@ -12,7 +12,9 @@ class Patient extends Model
     public static $rules = array(
         'name' => 'required',
         'gender' => 'required',
-        'birthday' => 'required',
+        'birthday_y' => 'required',
+        'birthday_m' => 'required',
+        'birthday_d' => 'required',
         'bloodtype' => 'required',
         'height' => 'required',
         'weight' => 'required',

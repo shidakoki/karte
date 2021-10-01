@@ -14,7 +14,8 @@ class CreatePatientsTable extends Migration
     public function up()
     {
         Schema::create('patients', function (Blueprint $table) {
-            $table->bigIncrements('name');
+            $table->bigIncrements('id');
+            $table->string('name');
             $table->integer('gender');
             $table->integer('birthday_y');
             $table->integer('birthday_m');
@@ -22,7 +23,7 @@ class CreatePatientsTable extends Migration
             $table->integer('bloodtype');
             $table->integer('height');
             $table->integer('weight');
-            $table->integer('keyperson');
+            $table->string('keyperson');
             $table->timestamps();
         });
     }

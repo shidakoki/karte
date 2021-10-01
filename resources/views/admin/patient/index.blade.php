@@ -31,14 +31,14 @@
                     <table class="table table-dark">
                         <thead>
                             <tr>
-                                <th width="10%">ID</th>
-                                <th width="20%">名前</th>
-                                <th width="20%">性別</th>
-                                <th width="20%">生年月日</th>
-                                <th width="20%">血液型</th>
-                                <th width="20%">身長</th>
-                                <th width="20%">体重</th>
-                                <th width="20%">キーパーソン</th>
+                                <th width="5%">ID</th>
+                                <th width="10%">名前</th>
+                                <th width="5%">性別</th>
+                                <th width="30%">生年月日</th>
+                                <th width="10%">血液型</th>
+                                <th width="10%">身長・体重</th>
+                                <th width="15%">キーパーソン</th>
+                                <th width="5%">操作</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -48,16 +48,16 @@
                                     <td>{{ \Str::limit($patient->name, 100) }}</td>
                                     <td>{{ \Str::limit($patient->gender, 100) }}</td>
                                     <td>{{ \Str::limit($patient->birthday, 100) }}</td>
-                                    <td>{{ \Str::limit($patient->bloodtype, 100) }}</td>
-                                    <td>{{ \Str::limit($patient->height, 100) }}</td>
-                                    <td>{{ \Str::limit($patient->weight, 100) }}</td>
+                                    <td>{{ config('const.bloodtype')[$patient->bloodtype] }}</td>
+                                    <td>
+                                        <div> {{ \Str::limit($patient->height, 100) }}</div>
+                                        <div> {{ \Str::limit($patient->weight, 100) }}</div>
+                                    </td>
                                     <td>{{ \Str::limit($patient->keyperson, 100) }}</td>
-                                     <div>
+                                    <td>
                                         <a href="{{ action('Admin\PatientController@edit', ['id' => $patient->id]) }}">編集</a>
-                                    </div>
-                                    <div>
-                                        <a href="{{ action('Admin\PatientController@delete', ['id' => $patien->id]) }}">削除</a>
-                                    </div>
+                                        <a href="{{ action('Admin\PatientController@delete', ['id' => $patient->id]) }}">削除</a>
+                                    </td>
                                 </tr>
                             @endforeach
                         </tbody>

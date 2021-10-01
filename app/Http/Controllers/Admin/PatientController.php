@@ -32,7 +32,7 @@ class PatientController extends Controller
       $patient->fill($form);
       $patient->save();
       // admin/news/createにリダイレクトする
-      return redirect('admin/patient/create');
+      return redirect('admin/patient');
   }  
   // 以下を追記
   public function index(Request $request)
@@ -45,6 +45,8 @@ class PatientController extends Controller
           // それ以外はすべてのニュースを取得する
           $posts = Patient::all();
       }
+      $citrus = config('const.citrus');
+      dump($citrus);
       return view('admin.patient.index', ['posts' => $posts, 'cond_title' => $cond_title]);
   }
   
