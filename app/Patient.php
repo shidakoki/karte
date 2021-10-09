@@ -8,7 +8,6 @@ class Patient extends Model
 {
     protected $guarded = array('id');
 
-    // 以下を追記
     public static $rules = array(
         'name' => 'required',
         'gender' => 'required',
@@ -20,6 +19,7 @@ class Patient extends Model
         'weight' => 'required',
         'keyperson' => 'required',
     );
+    
     public function histories()
     {
         return $this->hasMany('App\History');

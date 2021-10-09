@@ -68,10 +68,15 @@
                     <div class="form-group row">
                         <label class="col-md-2">キーパーソン</label>
                         <div class="col-md-10">
-                            <textarea class="form-control" name="keyperson" rows="5">{{ old('keyperson') }}</textarea>
+                            <textarea class="form-control" name="keyperson" rows="2">{{ old('keyperson') }}</textarea>
                         </div>
                     </div>
-                    
+                    <div class="form-group row">
+                        <label class="col-md-2">病名</label>
+                        <div class="col-md-10">
+                            <input type="text" class="form-control" name="disease" value="{{ old('name') }}">
+                        </div>
+                    </div>
                     {{ csrf_field() }}
                     <input type="submit" class="btn btn-primary" value="更新">
                 </form>

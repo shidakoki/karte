@@ -2,3 +2,15 @@ body {
   background-color: #FFFFCC;
 }
 
+.box {
+  background-color: white;
+  width: 100%;
+  height: 10%;
+}
+
+.patient_box {
+  background-color: white;
+  width: 80%;
+  height: 10%;
+}
+

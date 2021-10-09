@@ -31,7 +31,7 @@ class PatientController extends Controller
       // データベースに保存する
       $patient->fill($form);
       $patient->save();
-      // admin/news/createにリダイレクトする
+      // admin/patient/createにリダイレクトする
       return redirect('admin/patient');
   }  
   // 以下を追記
@@ -42,11 +42,10 @@ class PatientController extends Controller
           // 検索されたら検索結果を取得する
           $posts = Patient::where('name', $cond_title)->get();
       } else {
-          // それ以外はすべてのニュースを取得する
+          // それ以外はすべての患者を取得する
           $posts = Patient::all();
       }
-      $citrus = config('const.citrus');
-      dump($citrus);
+
       return view('admin.patient.index', ['posts' => $posts, 'cond_title' => $cond_title]);
   }
   
@@ -57,7 +56,7 @@ class PatientController extends Controller
       if (empty($patient)) {
         abort(404);    
       }
-      return view('admin.patient.edit', ['patiet_form' => $patient]);
+      return view('admin.patient.edit', ['patient_form' => $patient]);
   }
 
 
@@ -72,7 +71,7 @@ class PatientController extends Controller
       unset($patient_form['_token']);
 
       // 該当するデータを上書きして保存する
-      $patinet->fill($patient_form)->save();
+      $patient->fill($patient_form)->save();
       
       $history = new History();
         $history->patient_id = $patient->id;
