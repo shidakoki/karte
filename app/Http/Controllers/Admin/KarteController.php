@@ -13,15 +13,21 @@ class KarteController extends Controller
     {
       $patient = Patient::find($request->patient_id);
       $kartes = Karte::where('patient_id', $request->patient_id)->get();
+      //dd($kartes,$request->patient_id);
       return view('admin.karte.create', ['patient' => $patient,'kartes' => $kartes]);
     }
   
   public function create(Request $request)
     {
-      $this->validate($request, Karte::$rules);
+      //$this->validate($request, Karte::$rules);
       $karte= new Karte;
       $form = $request->all();
-        return view('admin/karte/create');
+      
+      // データベースに保存する
+      $karte->fill($form);
+      $karte->save();
+      //dd($karte,$form);
+        return redirect()->back();
     }
 
     public function edit(Request $request)

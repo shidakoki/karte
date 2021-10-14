@@ -52,6 +52,7 @@
                             <textarea class="form-control" name="text" rows="5">{{ old('text') }}</textarea>
                 　　      </div>
                 　　</div>
+                　　<input type="hidden" name="patient_id" value="{{$patient->id}}">
                  {{ csrf_field() }}
                     <input type="submit" class="btn btn-primary" value="更新">
                 </form>
@@ -60,8 +61,8 @@
         @foreach($kartes as $karte)
             <tr>
                <th>{{ config('const.writer_type')[$karte->writer_type] }}</th>
-               <td>{{ \Str::limit($karte->text, 100) }}</td>
-                  <a href="{{ action('Admin\KarteController@update',['id' => $kaere->id]) }}">編集</a>
+               <td>{{ \Str::limit($karte->text, 20) }}</td>
+                  <a href="{{ action('Admin\KarteController@update',['id' => $karte->id]) }}">編集</a>
                   <a href="{{ action('Admin\KarteController@delete', ['id' => $karte->id]) }}">削除</a>
                </td>
                </tr>
