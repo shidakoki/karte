@@ -29,10 +29,6 @@
     　　     キーパーソン{{ $patient->keyperson }}
     　　     病名{{ $patient->disease }}
     　　</div>
-    　　<div>
-    　　    <a href="{{ action('Admin\KarteController@create') }}" role="button" class="btn btn-primary">保存して継続</a>
-    　　    <a href="{{ action('Admin\PatientController@index') }}" role="button" class="btn btn-primary">保存して終了</a>
-    　　</div>
         <div class="row">
             <div class="col-md-8 mx-auto">
                 <form action="{{ action('Admin\KarteController@create') }}" method="post" enctype="multipart/form-data">
@@ -42,7 +38,7 @@
                          <option selected>職種</option>
                          <option value="1">Dr</option>
                          <option value="2">Ns</option>
-                         <option value="3">PT</option>
+                         <option value="3">リハ</option>
                          <option value="4">その他</option>
                         </select>
                     </div>
@@ -54,18 +50,17 @@
                 　　</div>
                 　　<input type="hidden" name="patient_id" value="{{$patient->id}}">
                  {{ csrf_field() }}
-                    <input type="submit" class="btn btn-primary" value="更新">
+                    <input type="submit" class="btn btn-primary" value="保存して継続">
                 </form>
             </div>
         </div>
         @foreach($kartes as $karte)
-            <tr>
-               <th>{{ config('const.writer_type')[$karte->writer_type] }}</th>
-               <td>{{ \Str::limit($karte->text, 20) }}</td>
-                  <a href="{{ action('Admin\KarteController@update',['id' => $karte->id]) }}">編集</a>
-                  <a href="{{ action('Admin\KarteController@delete', ['id' => $karte->id]) }}">削除</a>
-               </td>
-               </tr>
+            <div class="form-group">
+             <label for="exampleInputEmail1">{{ config('const.writer_type')[$karte->writer_type] }}</label>
+             <a href="{{ action('Admin\KarteController@update',['id' => $karte->id]) }}">編集</a>
+             <a href="{{ action('Admin\KarteController@delete', ['id' => $karte->id]) }}">削除</a>
+             <textarea class="form-control" id="exampleFormControlTextarea1" rows="3">{{ $karte->text }}</textarea>
+            </div>
         @endforeach
     </div>
 @endsection

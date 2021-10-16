@@ -35,9 +35,10 @@
                                 <th width="10%">名前</th>
                                 <th width="10%">性別</th>
                                 <th width="15%">生年月日</th>
-                                <th width="10%">血液型</th>
+                                {{--<th width="10%">血液型</th>
                                 <th width="10%">身長・体重</th>
-                                <th width="20%">キーパーソン</th>
+                                <th width="20%">キーパーソン</th>--}}
+                                <th width="30%">病名</th>
                                 <th width="15%">操作</th>
                             </tr>
                         </thead>
@@ -50,11 +51,12 @@
                                     <td>
                                     　　<div> {{ \Str::limit($patient->birthday_y, 100) }} / {{ \Str::limit($patient->birthday_m, 100) }} / {{ \Str::limit($patient->birthday_d, 100) }}</div>
                                     </td>
-                                    <td>{{ config('const.bloodtype')[$patient->bloodtype] }}</td>
+                                    {{--<td>{{ config('const.bloodtype')[$patient->bloodtype] }}</td>
                                     <td>
                                         <div> {{ \Str::limit($patient->height, 100) }} ・ {{ \Str::limit($patient->weight, 100) }}</div>
                                     </td>
-                                    <td>{{ \Str::limit($patient->keyperson, 100) }}</td>
+                                    <td>{{ \Str::limit($patient->keyperson, 100) }}</td>--}}
+                                    <td>{{ \Str::limit($patient->disease, 100) }}</td>
                                     <td>
                                         <a href="{{ action('Admin\KarteController@add', ['patient_id' => $patient->id]) }}">カルテ</a>
                                         <a href="{{ action('Admin\PatientController@edit', ['id' => $patient->id]) }}">編集</a>

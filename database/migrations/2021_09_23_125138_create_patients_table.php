@@ -20,10 +20,11 @@ class CreatePatientsTable extends Migration
             $table->integer('birthday_y');
             $table->integer('birthday_m');
             $table->integer('birthday_d');
-            $table->integer('bloodtype');
-            $table->integer('height');
-            $table->integer('weight');
+            $table->integer('bloodtype')->nullable();
+            $table->integer('height')->nullable();
+            $table->integer('weight')->nullable();
             $table->string('keyperson');
+            $table->string('disease');
             $table->timestamps();
         });
     }

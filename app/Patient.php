@@ -10,14 +10,15 @@ class Patient extends Model
 
     public static $rules = array(
         'name' => 'required',
-        'gender' => 'required',
-        'birthday_y' => 'required',
-        'birthday_m' => 'required',
-        'birthday_d' => 'required',
-        'bloodtype' => 'required',
-        'height' => 'required',
-        'weight' => 'required',
+        'gender' => 'required|integer',
+        'birthday_y' => 'required|integer',
+        'birthday_m' => 'required|integer',
+        'birthday_d' => 'required|integer',
+        'bloodtype' => 'integer',
+        'height' => 'required|integer',
+        'weight' => 'required|integer',
         'keyperson' => 'required',
+        'disease' => 'required',
     );
     
     public function histories()

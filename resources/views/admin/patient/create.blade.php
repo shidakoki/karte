@@ -46,7 +46,7 @@
                     <div class="form-group row">
                         <label class="col-md-2">血液型</label>
                         <select class="form-select" name="bloodtype" aria-label="Default select example">
-                         <option selected>血液型</option>
+                         <option value="0" selected>血液型</option>
                          <option value="1">A</option>
                          <option value="2">B</option>
                          <option value="3">O</option>
@@ -74,7 +74,7 @@
                     <div class="form-group row">
                         <label class="col-md-2">病名</label>
                         <div class="col-md-10">
-                            <input type="text" class="form-control" name="disease" value="{{ old('name') }}">
+                            <input type="text" class="form-control" name="disease" value="{{ old('disease') }}">
                         </div>
                     </div>
                     {{ csrf_field() }}

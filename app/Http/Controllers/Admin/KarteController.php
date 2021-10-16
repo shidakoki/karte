@@ -14,12 +14,15 @@ class KarteController extends Controller
       $patient = Patient::find($request->patient_id);
       $kartes = Karte::where('patient_id', $request->patient_id)->get();
       //dd($kartes,$request->patient_id);
+      //dump($patient);
+      //dump($kartes);
+      //return;
       return view('admin.karte.create', ['patient' => $patient,'kartes' => $kartes]);
     }
   
   public function create(Request $request)
     {
-      //$this->validate($request, Karte::$rules);
+      $this->validate($request, Karte::$rules);
       $karte= new Karte;
       $form = $request->all();
       
@@ -56,6 +59,6 @@ class KarteController extends Controller
       $karte = Karte::find($request->id);
       // 削除する
       $karte->delete();
-      return redirect('admin/karte/create');
+      return redirect()->back();
   }  
 }

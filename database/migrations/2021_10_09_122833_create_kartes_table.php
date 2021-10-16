@@ -17,7 +17,7 @@ class CreateKartesTable extends Migration
             $table->bigIncrements('id');
             $table->integer('patient_id');//karteの患者IDを保存するカラム
             $table->integer('writer_type'); // karteの職種を保存するカラム
-            $table->string('text');  // karteの本文を保存するカラム
+            $table->string('text')->nullable();  // karteの本文を保存するカラム
             $table->timestamps();
         });
     }
