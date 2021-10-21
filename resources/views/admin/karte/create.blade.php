@@ -8,27 +8,29 @@
 @section('content')
     <div class="container">
         <div class="patient_box">
-           患者ID{{ $patient->id }}
-           名前{{ $patient->name }}
+           <font color="white">患者ID{{ $patient->id }}</font>
+           <font color="white"> 名前{{ $patient->name }}</font>
            @php
              $birthday = $patient->birthday_y . str_pad($patient->birthday_m, 2, 0, STR_PAD_LEFT) .  str_pad($patient->birthday_d, 2, 0, STR_PAD_LEFT);
              $today = date('Ymd');
              $age = floor(($today - $birthday) / 10000);
            @endphp
-           年齢{{$age}}
-           性別{{ config('const.gender')[$patient->gender] }}
-           身長{{ $patient->height }}cm
-           体重{{ $patient->weight }}kg
+           <font color="white">年齢{{$age}}</font>
+           <font color="white">性別{{ config('const.gender')[$patient->gender] }}</font>
+           <font color="white">身長{{ $patient->height }}cm</font>
+           <font color="white">体重{{ $patient->weight }}kg</font>
            @php
            $height_m = $patient->height/100;
            $bmi = $patient->weight/($height_m*$height_m);
            $bmi2 = round($bmi,2);
            @endphp
-           BMI{{ $bmi2}}
-           血液型{{ config('const.bloodtype')[$patient->bloodtype] }}
-    　　     キーパーソン{{ $patient->keyperson }}
-    　　     病名{{ $patient->disease }}
+           <font color="white">BMI{{ $bmi2}}</font>
+           <font color="white">血液型{{ config('const.bloodtype')[$patient->bloodtype] }}</font><br>
+    　　     <font color="white">キーパーソン{{ $patient->keyperson }}</font>
+    　　     <font color="white">病名{{ $patient->disease }}</font>
     　　</div>
+    　　
+    　　
         <div class="row">
             <div class="col-md-8 mx-auto">
                 <form action="{{ action('Admin\KarteController@create') }}" method="post" enctype="multipart/form-data">
@@ -50,10 +52,13 @@
                 　　</div>
                 　　<input type="hidden" name="patient_id" value="{{$patient->id}}">
                  {{ csrf_field() }}
-                    <input type="submit" class="btn btn-primary" value="保存して継続">
+                    <input type="submit" name="submit1" class="btn btn-primary" value="保存して継続">
+                    <input type="submit" name="submit2" class="btn btn-primary" value="保存して終了">
                 </form>
             </div>
         </div>
+        <a href="{{ action('Admin\KarteController@create', ['patient_id' => $patient->id,'writer_type'=>'1']) }}">１に絞り込み</a>
+        <a href="{{ action('Admin\KarteController@create', ['patient_id' => $patient->id,'writer_type'=>'2']) }}">2に絞り込み</a>
         @foreach($kartes as $karte)
             <div class="form-group">
              <label for="exampleInputEmail1">{{ config('const.writer_type')[$karte->writer_type] }}</label>

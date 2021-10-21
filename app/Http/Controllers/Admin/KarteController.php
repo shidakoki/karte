@@ -13,6 +13,9 @@ class KarteController extends Controller
     {
       $patient = Patient::find($request->patient_id);
       $kartes = Karte::where('patient_id', $request->patient_id)->get();
+      $kartes = Karte::where('patient_id', $request->patient_id)
+      ->where('writer_type','=',$request->writer_type)
+      ->get();
       //dd($kartes,$request->patient_id);
       //dump($patient);
       //dump($kartes);
@@ -22,15 +25,31 @@ class KarteController extends Controller
   
   public function create(Request $request)
     {
+      dump($request);
+      $transition_target = 0;
+      if ($request->has('submit1')) {
+       echo 'submit1からのPOSTです。';
+       $transition_target = 0;
+      }
+      if ($request->has('submit2')) {
+       echo 'submit2からのPOSTです。';
+       $transition_target = 1;
+      }
       $this->validate($request, Karte::$rules);
       $karte= new Karte;
       $form = $request->all();
-      
+      unset($form['submit1']);
+      unset($form['submit2']);
+      //return;
       // データベースに保存する
       $karte->fill($form);
       $karte->save();
       //dd($karte,$form);
+      if ($transition_target == 0) {
         return redirect()->back();
+      } else {
+        return redirect('admin/patient');
+      }
     }
 
     public function edit(Request $request)
