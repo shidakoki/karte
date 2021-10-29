@@ -18,7 +18,9 @@ class CreateKartesTable extends Migration
             $table->integer('patient_id');//karteの患者IDを保存するカラム
             $table->integer('writer_type'); // karteの職種を保存するカラム
             $table->string('text')->nullable();  // karteの本文を保存するカラム
-            $table->timestamps();
+            $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP'));
+
         });
     }
 

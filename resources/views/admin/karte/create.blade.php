@@ -8,29 +8,28 @@
 @section('content')
     <div class="container">
         <div class="patient_box">
-           <font color="white">患者ID{{ $patient->id }}</font>
-           <font color="white"> 名前{{ $patient->name }}</font>
+           <font color="white"><span class="patient_profile_item">患者ID{{ $patient->id }}</span></font>
+           <font color="white"><span class="patient_profile_item">名前{{ $patient->name }}</span></font>
            @php
              $birthday = $patient->birthday_y . str_pad($patient->birthday_m, 2, 0, STR_PAD_LEFT) .  str_pad($patient->birthday_d, 2, 0, STR_PAD_LEFT);
              $today = date('Ymd');
              $age = floor(($today - $birthday) / 10000);
            @endphp
-           <font color="white">年齢{{$age}}</font>
-           <font color="white">性別{{ config('const.gender')[$patient->gender] }}</font>
-           <font color="white">身長{{ $patient->height }}cm</font>
-           <font color="white">体重{{ $patient->weight }}kg</font>
+           <font color="white"><span class="patient_profile_item">年齢{{$age}}</span></font>
+           <font color="white"><span class="patient_profile_item">性別{{ config('const.gender')[$patient->gender] }}</span></font>
+           <font color="white"><span class="patient_profile_item">身長{{ $patient->height }}cm</span></font>
+           <font color="white"><span class="patient_profile_item">体重{{ $patient->weight }}kg</span></font>
            @php
            $height_m = $patient->height/100;
            $bmi = $patient->weight/($height_m*$height_m);
            $bmi2 = round($bmi,2);
            @endphp
-           <font color="white">BMI{{ $bmi2}}</font>
-           <font color="white">血液型{{ config('const.bloodtype')[$patient->bloodtype] }}</font><br>
-    　　     <font color="white">キーパーソン{{ $patient->keyperson }}</font>
-    　　     <font color="white">病名{{ $patient->disease }}</font>
+           <font color="white"><span class="patient_profile_item">BMI{{ $bmi2}}</span></span></font>
+           <font color="white"><span class="patient_profile_item">血液型{{ config('const.bloodtype')[$patient->bloodtype] }}</span></font><br>
+    　　     <font color="white"><span class="patient_profile_item">キーパーソン{{ $patient->keyperson }}</span></font>
+    　　     <font color="white"><span class="patient_profile_item">病名{{ $patient->disease }}</span></font>
     　　</div>
-    　　
-    　　
+    　　<br>
         <div class="row">
             <div class="col-md-8 mx-auto">
                 <form action="{{ action('Admin\KarteController@create') }}" method="post" enctype="multipart/form-data">
@@ -57,13 +56,17 @@
                 </form>
             </div>
         </div>
-        <a href="{{ action('Admin\KarteController@create', ['patient_id' => $patient->id,'writer_type'=>'1']) }}">１に絞り込み</a>
-        <a href="{{ action('Admin\KarteController@create', ['patient_id' => $patient->id,'writer_type'=>'2']) }}">2に絞り込み</a>
+        <div>検索</div><a href="{{ action('Admin\KarteController@create', ['patient_id' => $patient->id,'writer_type'=>'0']) }}">ALL</a>
+                       <a href="{{ action('Admin\KarteController@create', ['patient_id' => $patient->id,'writer_type'=>'1']) }}">Dr</a>
+                       <a href="{{ action('Admin\KarteController@create', ['patient_id' => $patient->id,'writer_type'=>'2']) }}">NS</a>
+                       <a href="{{ action('Admin\KarteController@create', ['patient_id' => $patient->id,'writer_type'=>'3']) }}">リハ</a>
+                       <a href="{{ action('Admin\KarteController@create', ['patient_id' => $patient->id,'writer_type'=>'4']) }}">その他</a>
         @foreach($kartes as $karte)
             <div class="form-group">
              <label for="exampleInputEmail1">{{ config('const.writer_type')[$karte->writer_type] }}</label>
              <a href="{{ action('Admin\KarteController@update',['id' => $karte->id]) }}">編集</a>
              <a href="{{ action('Admin\KarteController@delete', ['id' => $karte->id]) }}">削除</a>
+             <textarea class="form-control" id="exampleFormControlTextarea1" rows="3">{{ $karte->created_at }}</textarea>
              <textarea class="form-control" id="exampleFormControlTextarea1" rows="3">{{ $karte->text }}</textarea>
             </div>
         @endforeach

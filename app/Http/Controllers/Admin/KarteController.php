@@ -6,16 +6,22 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Patient;
 use App\Karte;
+use Carbon\Carbon;
 
 class KarteController extends Controller
 {
   public function add(Request $request)
     {
+      $writer_type = $request->writer_type;
       $patient = Patient::find($request->patient_id);
-      $kartes = Karte::where('patient_id', $request->patient_id)->get();
-      $kartes = Karte::where('patient_id', $request->patient_id)
-      ->where('writer_type','=',$request->writer_type)
-      ->get();
+      if ($writer_type == 0){
+        $kartes = Karte::where('patient_id', $request->patient_id)->get();
+        }
+      else{
+        $kartes = Karte::where('patient_id', $request->patient_id)
+        ->where('writer_type','=',$request->writer_type)
+        ->get();
+        }
       //dd($kartes,$request->patient_id);
       //dump($patient);
       //dump($kartes);
@@ -25,15 +31,17 @@ class KarteController extends Controller
   
   public function create(Request $request)
     {
-      dump($request);
+      //dump($request);
       $transition_target = 0;
       if ($request->has('submit1')) {
        echo 'submit1からのPOSTです。';
        $transition_target = 0;
+       //保存して継続のボタン=submit1
       }
       if ($request->has('submit2')) {
        echo 'submit2からのPOSTです。';
        $transition_target = 1;
+       //保存して終了ボタン＝submit2
       }
       $this->validate($request, Karte::$rules);
       $karte= new Karte;
@@ -47,8 +55,10 @@ class KarteController extends Controller
       //dd($karte,$form);
       if ($transition_target == 0) {
         return redirect()->back();
+        //保存して継続のボタンからcreate/karteに移動
       } else {
         return redirect('admin/patient');
+        //保存して終了ボタンからpatientに移動
       }
     }
 
