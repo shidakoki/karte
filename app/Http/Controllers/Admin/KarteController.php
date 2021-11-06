@@ -70,17 +70,16 @@ class KarteController extends Controller
     public function update(Request $request)
     {
       // Validationをかける
-      $this->validate($request, Patient::$rules);
+      $this->validate($request, Karte::$rules);
       // Kartes Modelからデータを取得する
       $karte = Karte::find($request->id);
       // 送信されてきたフォームデータを格納する
       $karte_form = $request->all();
       unset($karte_form['_token']);
-
       // 該当するデータを上書きして保存する
       $karte->fill($karte_form)->save();
       
-        return redirect('admin/karte/create');
+        return redirect('admin/karte/create?'.'patient_id='.$karte_form["patient_id"]);
     }
     public function delete(Request $request)
   {

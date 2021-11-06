@@ -8,26 +8,26 @@
 @section('content')
     <div class="container">
         <div class="patient_box">
-           <font color="white"><span class="patient_profile_item">患者ID{{ $patient->id }}</span></font>
-           <font color="white"><span class="patient_profile_item">名前{{ $patient->name }}</span></font>
+           <font color="white"><span class="patient_profile_item">患者ID{{ $patient->id }}</span></font>&nbsp;
+           <font color="white"><span class="patient_profile_item">名前{{ $patient->name }}</span></font>&nbsp;
            @php
              $birthday = $patient->birthday_y . str_pad($patient->birthday_m, 2, 0, STR_PAD_LEFT) .  str_pad($patient->birthday_d, 2, 0, STR_PAD_LEFT);
              $today = date('Ymd');
              $age = floor(($today - $birthday) / 10000);
            @endphp
-           <font color="white"><span class="patient_profile_item">年齢{{$age}}</span></font>
-           <font color="white"><span class="patient_profile_item">性別{{ config('const.gender')[$patient->gender] }}</span></font>
-           <font color="white"><span class="patient_profile_item">身長{{ $patient->height }}cm</span></font>
-           <font color="white"><span class="patient_profile_item">体重{{ $patient->weight }}kg</span></font>
+           <font color="white"><span class="patient_profile_item">年齢{{$age}}</span></font>&nbsp;
+           <font color="white"><span class="patient_profile_item">性別{{ config('const.gender')[$patient->gender] }}</span></font>&nbsp;
+           <font color="white"><span class="patient_profile_item">身長{{ $patient->height }}cm</span></font>&nbsp;
+           <font color="white"><span class="patient_profile_item">体重{{ $patient->weight }}kg</span></font>&nbsp;
            @php
            $height_m = $patient->height/100;
            $bmi = $patient->weight/($height_m*$height_m);
            $bmi2 = round($bmi,2);
            @endphp
-           <font color="white"><span class="patient_profile_item">BMI{{ $bmi2}}</span></span></font>
-           <font color="white"><span class="patient_profile_item">血液型{{ config('const.bloodtype')[$patient->bloodtype] }}</span></font><br>
-    　　     <font color="white"><span class="patient_profile_item">キーパーソン{{ $patient->keyperson }}</span></font>
-    　　     <font color="white"><span class="patient_profile_item">病名{{ $patient->disease }}</span></font>
+           <font color="white"><span class="patient_profile_item">BMI{{ $bmi2}}</span></span></font>&nbsp;
+           <font color="white"><span class="patient_profile_item">血液型{{ config('const.bloodtype')[$patient->bloodtype] }}</span></font>&nbsp;<br>
+    　　     <font color="white"><span class="patient_profile_item">キーパーソン{{ $patient->keyperson }}</span></font>&nbsp;
+    　　     <font color="white"><span class="patient_profile_item">病名{{ $patient->disease }}</span></font>&nbsp;
     　　</div>
     　　<br>
         <div class="row">
@@ -56,18 +56,43 @@
                 </form>
             </div>
         </div>
-        <div>検索</div><a href="{{ action('Admin\KarteController@create', ['patient_id' => $patient->id,'writer_type'=>'0']) }}">ALL</a>
-                       <a href="{{ action('Admin\KarteController@create', ['patient_id' => $patient->id,'writer_type'=>'1']) }}">Dr</a>
-                       <a href="{{ action('Admin\KarteController@create', ['patient_id' => $patient->id,'writer_type'=>'2']) }}">NS</a>
-                       <a href="{{ action('Admin\KarteController@create', ['patient_id' => $patient->id,'writer_type'=>'3']) }}">リハ</a>
-                       <a href="{{ action('Admin\KarteController@create', ['patient_id' => $patient->id,'writer_type'=>'4']) }}">その他</a>
+        {{--
+        <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+  　　　  　<input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>
+  　　　   　<label class="btn btn-outline-primary" for="btnradio1" href="{{ action('Admin\KarteController@create', ['patient_id' => $patient->id,'writer_type'=>'0']) }}">ALL</label>
+   　　   　<input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
+  　　　     <label class="btn btn-outline-primary" for="btnradio2" href="{{ action('Admin\KarteController@create', ['patient_id' => $patient->id,'writer_type'=>'1']) }}">Dr</label>
+          <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off">
+          <label class="btn btn-outline-primary" for="btnradio3" href="{{ action('Admin\KarteController@create', ['patient_id' => $patient->id,'writer_type'=>'2']) }}">Ns</label>
+          <input type="radio" class="btn-check" name="btnradio" id="btnradio4" autocomplete="off">
+          <label class="btn btn-outline-primary" for="btnradio4" href="{{ action('Admin\KarteController@create', ['patient_id' => $patient->id,'writer_type'=>'3']) }}">リハ</label>
+　        <input type="radio" class="btn-check" name="btnradio" id="btnradio5" autocomplete="off">
+          <label class="btn btn-outline-primary" for="btnradio5" href="{{ action('Admin\KarteController@create', ['patient_id' => $patient->id,'writer_type'=>'4']) }}">その他</label>
+        </div>
+        --}}
+        <a class="badge rounded-pill bg-light" href="{{ action('Admin\KarteController@create', ['patient_id' => $patient->id,'writer_type'=>'0']) }}">ALL</a>
+        <a class="badge rounded-pill bg-light" href="{{ action('Admin\KarteController@create', ['patient_id' => $patient->id,'writer_type'=>'1']) }}">Dr</a>
+        <a class="badge rounded-pill bg-light" href="{{ action('Admin\KarteController@create', ['patient_id' => $patient->id,'writer_type'=>'2']) }}">NS</a>
+        <a class="badge rounded-pill bg-light" href="{{ action('Admin\KarteController@create', ['patient_id' => $patient->id,'writer_type'=>'3']) }}">リハ</a>
+        <a class="badge rounded-pill bg-light" href="{{ action('Admin\KarteController@create', ['patient_id' => $patient->id,'writer_type'=>'4']) }}">その他</a>
         @foreach($kartes as $karte)
             <div class="form-group">
-             <label for="exampleInputEmail1">{{ config('const.writer_type')[$karte->writer_type] }}</label>
-             <a href="{{ action('Admin\KarteController@update',['id' => $karte->id]) }}">編集</a>
-             <a href="{{ action('Admin\KarteController@delete', ['id' => $karte->id]) }}">削除</a>
-             <textarea class="form-control" id="exampleFormControlTextarea1" rows="3">{{ $karte->created_at }}</textarea>
-             <textarea class="form-control" id="exampleFormControlTextarea1" rows="3">{{ $karte->text }}</textarea>
+              <form action="{{ action('Admin\KarteController@update') }}" method="post" enctype="multipart/form-data">
+                      <input type="hidden" name="id" value="{{ $karte->id }}">
+                      <input type="hidden" name="writer_type" value="{{ $karte->writer_type }}">
+                      <input type="hidden" name="patient_id" value="{{$patient->id}}">
+                            {{ csrf_field() }}
+                    <label for="exampleInputEmail1">{{ config('const.writer_type')[$karte->writer_type] }}</label>
+                     <a href="{{ action('Admin\KarteController@update',['id' => $karte->id]) }}">編集</a>
+                     <a href="{{ action('Admin\KarteController@delete', ['id' => $karte->id]) }}">削除</a>
+                     <a>{{ $karte->created_at }}</a>
+                     <div class="card">
+                     <div class="card-body">
+                         <textarea class="form-control" name="text" rows="3">{{ $karte->text }}</textarea>
+                     </div>
+                     </div>  
+                      <input type="submit" class="btn btn-primary" value="更新">
+              </form>
             </div>
         @endforeach
     </div>
