@@ -29,9 +29,8 @@ Route::group(['prefix' => 'admin'], function() {
     Route::get('karte/edit', 'Admin\KarteController@edit')->middleware('auth'); 
     Route::post('karte/edit', 'Admin\KarteController@update')->middleware('auth'); 
     Route::get('karte/delete', 'Admin\KarteController@delete')->middleware('auth');
-
 });
-
+   Route::get('confirmation', 'ConfirmationController@index')->middleware('auth');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

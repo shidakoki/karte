@@ -15,17 +15,13 @@ class KarteController extends Controller
       $writer_type = $request->writer_type;
       $patient = Patient::find($request->patient_id);
       if ($writer_type == 0){
-        $kartes = Karte::where('patient_id', $request->patient_id)->get();
+        $kartes = Karte::where('patient_id', $request->patient_id)->paginate(2);
         }
       else{
         $kartes = Karte::where('patient_id', $request->patient_id)
         ->where('writer_type','=',$request->writer_type)
-        ->get();
+        ->paginate(2);
         }
-      //dd($kartes,$request->patient_id);
-      //dump($patient);
-      //dump($kartes);
-      //return;
       return view('admin.karte.create', ['patient' => $patient,'kartes' => $kartes]);
     }
   

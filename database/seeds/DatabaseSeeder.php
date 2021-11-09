@@ -14,9 +14,9 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         User::create([
-            'name' => 'tech',
-            'email' => 'techboostkarte@localhost',
-            'password' => Hash::make('tech'),
+            'name' => 'test',
+            'email' => 'test',
+            'password' => Hash::make('test'),
         ]);
 
         // $this->call(UsersTableSeeder::class);

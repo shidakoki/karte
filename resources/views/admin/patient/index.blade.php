@@ -48,9 +48,7 @@
                                     <th>{{ $patient->id }}</th>
                                     <td>{{ \Str::limit($patient->name, 100) }}</td>
                                     <td>{{ config('const.gender')[$patient->gender] }}</td>
-                                    <td>
-                                    　　<div> {{ \Str::limit($patient->birthday_y, 100) }} / {{ \Str::limit($patient->birthday_m, 100) }} / {{ \Str::limit($patient->birthday_d, 100) }}</div>
-                                    </td>
+                                    <td>{{ \Str::limit($patient->birthday_y, 100) }} / {{ \Str::limit($patient->birthday_m, 100) }} / {{ \Str::limit($patient->birthday_d, 100) }}</td>
                                     {{--<td>{{ config('const.bloodtype')[$patient->bloodtype] }}</td>
                                     <td>
                                         <div> {{ \Str::limit($patient->height, 100) }} ・ {{ \Str::limit($patient->weight, 100) }}</div>
@@ -60,7 +58,7 @@
                                     <td>
                                         <a href="{{ action('Admin\KarteController@add', ['patient_id' => $patient->id]) }}">カルテ</a>
                                         <a href="{{ action('Admin\PatientController@edit', ['id' => $patient->id]) }}">編集</a>
-                                        <a href="{{ action('Admin\PatientController@delete', ['id' => $patient->id]) }}">削除</a>
+                                        <a href="{{ action('ConfirmationController@index', ['patient_id' => $patient->id]) }}">削除</a>
                                     </td>
                                 </tr>
                             @endforeach

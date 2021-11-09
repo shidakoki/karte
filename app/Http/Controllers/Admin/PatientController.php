@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Patient;
-use App\History;
 use Carbon\Carbon;
 
 class PatientController extends Controller
@@ -72,12 +71,6 @@ class PatientController extends Controller
 
       // 該当するデータを上書きして保存する
       $patient->fill($patient_form)->save();
-      
-      $history = new History();
-        $history->patient_id = $patient->id;
-        $history->edited_at = Carbon::now();
-        $history->save();
-
       return redirect('admin/patient');
   }
   

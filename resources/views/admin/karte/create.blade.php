@@ -31,10 +31,10 @@
     　　</div>
     　　<br>
         <div class="row">
-            <div class="col-md-8 mx-auto">
+            <div class="col-md-12 mx-auto">
                 <form action="{{ action('Admin\KarteController@create') }}" method="post" enctype="multipart/form-data">
                     <div class="form-group row">
-                        <label class="col-md-2">職種</label>
+                        <label class="col-md-1">職種</label>
                         <select name="writer_type" class="form-select" aria-label="Default select example">
                          <option selected>職種</option>
                          <option value="1">Dr</option>
@@ -44,8 +44,8 @@
                         </select>
                     </div>
                     <div class="form-group row">
-                        <label class="col-md-2">新規記録</label>
-                        <div class="col-md-10">
+                        <label class="col-md-1">新規記録</label>
+                        <div class="col-md-12">
                             <textarea class="form-control" name="text" rows="5">{{ old('text') }}</textarea>
                 　　      </div>
                 　　</div>
@@ -56,20 +56,6 @@
                 </form>
             </div>
         </div>
-        {{--
-        <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
-  　　　  　<input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>
-  　　　   　<label class="btn btn-outline-primary" for="btnradio1" href="{{ action('Admin\KarteController@create', ['patient_id' => $patient->id,'writer_type'=>'0']) }}">ALL</label>
-   　　   　<input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
-  　　　     <label class="btn btn-outline-primary" for="btnradio2" href="{{ action('Admin\KarteController@create', ['patient_id' => $patient->id,'writer_type'=>'1']) }}">Dr</label>
-          <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off">
-          <label class="btn btn-outline-primary" for="btnradio3" href="{{ action('Admin\KarteController@create', ['patient_id' => $patient->id,'writer_type'=>'2']) }}">Ns</label>
-          <input type="radio" class="btn-check" name="btnradio" id="btnradio4" autocomplete="off">
-          <label class="btn btn-outline-primary" for="btnradio4" href="{{ action('Admin\KarteController@create', ['patient_id' => $patient->id,'writer_type'=>'3']) }}">リハ</label>
-　        <input type="radio" class="btn-check" name="btnradio" id="btnradio5" autocomplete="off">
-          <label class="btn btn-outline-primary" for="btnradio5" href="{{ action('Admin\KarteController@create', ['patient_id' => $patient->id,'writer_type'=>'4']) }}">その他</label>
-        </div>
-        --}}
         <a class="badge rounded-pill bg-light" href="{{ action('Admin\KarteController@create', ['patient_id' => $patient->id,'writer_type'=>'0']) }}">ALL</a>
         <a class="badge rounded-pill bg-light" href="{{ action('Admin\KarteController@create', ['patient_id' => $patient->id,'writer_type'=>'1']) }}">Dr</a>
         <a class="badge rounded-pill bg-light" href="{{ action('Admin\KarteController@create', ['patient_id' => $patient->id,'writer_type'=>'2']) }}">NS</a>
@@ -83,17 +69,17 @@
                       <input type="hidden" name="patient_id" value="{{$patient->id}}">
                             {{ csrf_field() }}
                     <label for="exampleInputEmail1">{{ config('const.writer_type')[$karte->writer_type] }}</label>
-                     <a href="{{ action('Admin\KarteController@update',['id' => $karte->id]) }}">編集</a>
+                     <input type="submit" class="link-btn" value="更新">
                      <a href="{{ action('Admin\KarteController@delete', ['id' => $karte->id]) }}">削除</a>
                      <a>{{ $karte->created_at }}</a>
                      <div class="card">
                      <div class="card-body">
                          <textarea class="form-control" name="text" rows="3">{{ $karte->text }}</textarea>
                      </div>
-                     </div>  
-                      <input type="submit" class="btn btn-primary" value="更新">
+                     </div> 
               </form>
             </div>
         @endforeach
+        {{$kartes->appends(request()->input())->links()}}
     </div>
 @endsection

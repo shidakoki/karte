@@ -18,3 +18,18 @@ body {
   font-size: 18px;
 }
 
+.navbar a {
+  color: #444444 !important;
+}
+
+.link-btn {
+  cursor: pointer;
+  border: none;
+  background: none;
+  color: #3490dc;
+}
+
+.link-btn:hover {
+  text-decoration: underline;
+}
+
