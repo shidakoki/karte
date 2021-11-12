@@ -3,5 +3,6 @@
 
 @section('content')
 <div>本当に削除しますか？</div>
-<a href="{{ action('Admin\PatientController@delete', ['id' => $patient_id]) }}">削除</a>
-@endsection
+<a class= "a_hrefvar" href="{{ $confirmation_url }}">削除</a>
+{{--<a class= "a_hrefvar" href="{{ action('Admin\PatientController@delete', ['id' => $patient_id]) }}">削除</a>
+--}}@endsection

@@ -79,10 +79,16 @@ class KarteController extends Controller
     }
     public function delete(Request $request)
   {
+      //$this->validate($request, Karte::$rules_delete);
+      $karte_form = $request->all();
       // 該当するPatient Modelを取得
       $karte = Karte::find($request->id);
+
       // 削除する
       $karte->delete();
-      return redirect()->back();
+      // dump($karte_form);
+      // return;
+      // return redirect()->back();
+      return redirect('admin/karte/create?'.'patient_id='.$karte_form["patient_id"]);
   }  
 }

@@ -56,9 +56,9 @@
                                     <td>{{ \Str::limit($patient->keyperson, 100) }}</td>--}}
                                     <td>{{ \Str::limit($patient->disease, 100) }}</td>
                                     <td>
-                                        <a href="{{ action('Admin\KarteController@add', ['patient_id' => $patient->id]) }}">カルテ</a>
-                                        <a href="{{ action('Admin\PatientController@edit', ['id' => $patient->id]) }}">編集</a>
-                                        <a href="{{ action('ConfirmationController@index', ['patient_id' => $patient->id]) }}">削除</a>
+                                        <a class= "a_hrefvar" href="{{ action('Admin\KarteController@add', ['patient_id' => $patient->id]) }}">カルテ</a>
+                                        <a class= "a_hrefvar" href="{{ action('Admin\PatientController@edit', ['id' => $patient->id]) }}">編集</a>
+                                        <a class= "a_hrefvar" href="{{ action('ConfirmationController@index', ['confirmation_url' => action('Admin\PatientController@delete', ['id' => $patient->id])]) }}">削除</a>
                                     </td>
                                 </tr>
                             @endforeach

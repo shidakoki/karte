@@ -1,5 +1,5 @@
 body{
-    background-color: #CCFFFF;
+    background-color: #795548;
 }
 
 .box{
@@ -9,7 +9,7 @@ body{
 }
 
 .patient_box{
-    background-color: #444444;
+    background-color: #A1887F;
     width: 100%;
     height: 10%;
 }
@@ -23,8 +23,26 @@ body{
   cursor: pointer;
   border: none;
   background: none;
-  color: #3490dc;
+  color: #FFCA28;
 }
 .link-btn:hover{
   text-decoration: underline;
+}
+.btn-primary {
+    color: #795548;
+    background-color: #FFCA28;
+    border-color: #4CAF50;
+}
+.bg-light {
+    color: #4CAF50;
+}
+.bg-light {
+    background-color: #FFCA28;
+}
+.table-dark {
+    color: #fff;
+    background-color: #A1887F;
+}
+.a_hrefvar {
+    color: #FFCA28;
 }

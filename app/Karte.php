@@ -13,4 +13,7 @@ class Karte extends Model
         'writer_type' => 'required|integer',
         'text' => '',
     );
+    public static $rules_delete = array(
+        'patient_id' => '',
+    );
 }

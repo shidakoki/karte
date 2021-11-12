@@ -25,11 +25,10 @@
            $bmi2 = round($bmi,2);
            @endphp
            <font color="white"><span class="patient_profile_item">BMI{{ $bmi2}}</span></span></font>&nbsp;
-           <font color="white"><span class="patient_profile_item">血液型{{ config('const.bloodtype')[$patient->bloodtype] }}</span></font>&nbsp;<br>
+           <font color="white"><span class="patient_profile_item">血液型{{ config('const.bloodtype')[$patient->bloodtype] }}</span></font>&nbsp;
     　　     <font color="white"><span class="patient_profile_item">キーパーソン{{ $patient->keyperson }}</span></font>&nbsp;
     　　     <font color="white"><span class="patient_profile_item">病名{{ $patient->disease }}</span></font>&nbsp;
     　　</div>
-    　　<br>
         <div class="row">
             <div class="col-md-12 mx-auto">
                 <form action="{{ action('Admin\KarteController@create') }}" method="post" enctype="multipart/form-data">
@@ -43,14 +42,10 @@
                          <option value="4">その他</option>
                         </select>
                     </div>
-                    <div class="form-group row">
-                        <label class="col-md-1">新規記録</label>
-                        <div class="col-md-12">
-                            <textarea class="form-control" name="text" rows="5">{{ old('text') }}</textarea>
-                　　      </div>
-                　　</div>
-                　　<input type="hidden" name="patient_id" value="{{$patient->id}}">
-                 {{ csrf_field() }}
+                    <div class="form-group row"><label class="col-md-2">新規記録</label>
+                    <div class="col-md-12"><textarea class="form-control" name="text" rows="5">{{ old('text') }}</textarea></div>
+                    </div>
+                    <input type="hidden" name="patient_id" value="{{$patient->id}}">{{ csrf_field() }}
                     <input type="submit" name="submit1" class="btn btn-primary" value="保存して継続">
                     <input type="submit" name="submit2" class="btn btn-primary" value="保存して終了">
                 </form>
@@ -68,9 +63,9 @@
                       <input type="hidden" name="writer_type" value="{{ $karte->writer_type }}">
                       <input type="hidden" name="patient_id" value="{{$patient->id}}">
                             {{ csrf_field() }}
-                    <label for="exampleInputEmail1">{{ config('const.writer_type')[$karte->writer_type] }}</label>
+                     <label for="exampleInputEmail1">{{ config('const.writer_type')[$karte->writer_type] }}</label>
                      <input type="submit" class="link-btn" value="更新">
-                     <a href="{{ action('Admin\KarteController@delete', ['id' => $karte->id]) }}">削除</a>
+                     <a class= "a_hrefvar" href="{{ action('ConfirmationController@index', ['confirmation_url' => action('Admin\KarteController@delete', ['id' => $karte->id,'patient_id' => $patient->id])]) }}">削除</a>
                      <a>{{ $karte->created_at }}</a>
                      <div class="card">
                      <div class="card-body">
