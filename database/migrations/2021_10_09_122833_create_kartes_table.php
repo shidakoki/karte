@@ -19,7 +19,7 @@ class CreateKartesTable extends Migration
             $table->integer('writer_type'); // karteの職種を保存するカラム
             $table->string('text')->nullable(); // karteの本文を保存するカラム
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP')); //karteの作成時間を保存するカラム
-            $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP'));//karteの編集時間の時間を保存するカラム
+            $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP'));//karteの編集時間の時間を保存するカラム
 
         });
     }
