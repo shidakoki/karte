@@ -10,6 +10,8 @@ class ConfirmationController extends Controller
     {
       $form = $request->all();
       $confirmation_url = $form['confirmation_url'];
+      //dump($confirmation_url);
+      //return;
     //   $patient_id = $form["patient_id"];
     //   $confirmation_url = action('Admin\PatientController@delete', ['id' => $patient_id]);
       return view('admin.confirmation', ['confirmation_url' => $confirmation_url]);

@@ -8,10 +8,20 @@ body {
   height: 10%;
 }
 
-.patient_box {
+.patient_box1 {
   background-color: #A1887F;
-  width: 100%;
-  height: 10%;
+  width: 35%;
+  height: 80px;
+  float: left;
+  margin-bottom: 30px;
+}
+
+.patient_box2 {
+  background-color: #A1887F;
+  width: 65%;
+  height: 80px;
+  float: right;
+  margin-bottom: 30px;
 }
 
 .patient_profile_item {
@@ -19,7 +29,7 @@ body {
 }
 
 .navbar a {
-  color: #444444 !important;
+  color: white !important;
 }
 
 .link-btn {
@@ -43,16 +53,88 @@ body {
   color: #4CAF50;
 }
 
-.bg-light {
-  background-color: #FFCA28;
-}
-
 .table-dark {
   color: #fff;
   background-color: #A1887F;
 }
 
 .a_hrefvar {
-  color: #FFCA28;
+  color: red;
+}
+
+.title_HT {
+  color: white;
+  font-size: 50px;
+  width: 100%;
+  height: 150px;
+  text-align: center;
+}
+
+.patient_profile_item1 {
+  font-size: 20px;
+  width: 40px;
+  height: 40px;
+}
+
+.patient_profile_item2 {
+  font-size: 30px;
+  width: 40px;
+  height: 40px;
+}
+
+.patient_profile_item3 {
+  font-size: 20px;
+  width: 40px;
+  height: 40px;
+}
+
+.patient_profile_item4 {
+  font-size: 25px;
+  width: 40px;
+  height: 40px;
+  border-bottom: solid 2px #FFCA28;
+}
+
+.opacity {
+  opacity: 0.5;
+  white-space: nowrap;
+}
+
+.form-group1 {
+  background-color: #A1887F;
+}
+
+.a1 {
+  font-color: white;
+}
+
+.row1 {
+  margin-bottom: 20px;
+}
+
+.search {
+  margin-bottom: 20px;
+}
+
+.badge {
+  padding: 0.9em 0.9em;
+}
+
+.delete-btn {
+  float: center;
+  text-align: center;
+  font-size: 50px;
+}
+
+.writer_type-color {
+  color: yellow;
+}
+
+.h-50 {
+  margin-left: 20px;
+}
+
+.alert {
+  padding: 0.4rem 1.25rem;
 }
 

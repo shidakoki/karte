@@ -3,8 +3,10 @@
 
 @section('content')
     <div class="container">
-        <div class="row">
+        <div class="alert alert-success" role="alert">
+        <div class="mx-auto" style="width: 200px;">
             <h2>患者一覧</h2>
+        </div>
         </div>
         <div class="row">
             <div class="col-md-4">
@@ -13,7 +15,7 @@
             <div class="col-md-8">
                 <form action="{{ action('Admin\PatientController@index') }}" method="get">
                     <div class="form-group row">
-                        <label class="col-md-2">名前</label>
+                        <label class="alert alert-warning" role="alert">名前</label>
                         <div class="col-md-8">
                             <input type="text" class="form-control" name="cond_title" value="{{ $cond_title }}">
                         </div>
